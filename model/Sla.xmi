@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.slamc:Sla
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:org.eclipse.slamc="http://org/eclipse/slamc"
+    xsi:schemaLocation="http://org/eclipse/slamc slamc.ecore">
+  <ServiceCover/>
+  <States label="S1">
+    <Resources
+        name="VM1"
+        provider="CSP1"
+        size="M"/>
+    <Resources
+        name="VM2"
+        provider="CSP2"
+        size="M"/>
+  </States>
+  <States label="S2"
+      type="isNormal">
+    <Resources
+        name="VM1"
+        provider="CSP1"
+        size="L"/>
+    <Resources
+        name="VM2"
+        provider="CSP2"
+        size="L"/>
+  </States>
+  <Transitions
+      id="T1"
+      stateSource="//@States.0"
+      stateTarget="//@States.1">
+    <Events
+        id="E1"
+        type="ResourceRelated"
+        predicate="responseTime, average,>=,18,ms,60s"/>
+    <reconfigurationActions
+        id="A1"
+        type="VerticalScale"
+        ActionAttribute="UI,Change-in-capacity,L"/>
+  </Transitions>
+  <Transitions
+      id="T2"
+      stateSource="//@States.1"
+      stateTarget="//@States.0">
+    <Events
+        id="E2"
+        type="ResourceRelated"
+        predicate="responseTime,average, &lt;,10,ms,60s"/>
+    <reconfigurationActions
+        id="A2"
+        type="VerticalScale"
+        ActionAttribute="UI,Change-in-capacity,L"/>
+  </Transitions>
+</org.eclipse.slamc:Sla>

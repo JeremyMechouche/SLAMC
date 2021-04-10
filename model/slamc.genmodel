@@ -11,11 +11,11 @@
       <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//SloType/qualitative"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="slamc.ecore#//SloComparisonOperator">
-      <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//SloComparisonOperator/%3C"/>
-      <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//SloComparisonOperator/%3E"/>
-      <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//SloComparisonOperator/%3C="/>
-      <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//SloComparisonOperator/%3E="/>
-      <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//SloComparisonOperator/="/>
+      <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//SloComparisonOperator/lessThan"/>
+      <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//SloComparisonOperator/greaterThan"/>
+      <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//SloComparisonOperator/lessOrEqual"/>
+      <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//SloComparisonOperator/greaterOrEqual"/>
+      <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//SloComparisonOperator/Equal"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="slamc.ecore#//StateType">
       <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//StateType/isInitial"/>
@@ -23,31 +23,31 @@
       <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//StateType/isFinal"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="slamc.ecore#//ReconfigurationActionType">
-      <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//ReconfigurationActionType/Horizontal%20Scale"/>
-      <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//ReconfigurationActionType/Vertical%20Scale"/>
+      <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//ReconfigurationActionType/HorizontalScale"/>
+      <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//ReconfigurationActionType/VerticalScale"/>
       <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//ReconfigurationActionType/Migration"/>
-      <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//ReconfigurationActionType/Application%20Reconfiguration"/>
-      <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//ReconfigurationActionType/Basic%20Action"/>
+      <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//ReconfigurationActionType/ApplicationReconfiguration"/>
+      <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//ReconfigurationActionType/BasicAction"/>
       <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//ReconfigurationActionType/Composite"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="slamc.ecore#//EventType">
       <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//EventType/Temporal"/>
-      <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//EventType/Resource%20Related"/>
-      <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//EventType/User%20Defined"/>
+      <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//EventType/ResourceRelated"/>
+      <genEnumLiterals ecoreEnumLiteral="slamc.ecore#//EventType/UserDefined"/>
     </genEnums>
     <genClasses ecoreClass="slamc.ecore#//Sla">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute slamc.ecore#//Sla/name"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference slamc.ecore#//Sla/ServiceCover"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference slamc.ecore#//Sla/States"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference slamc.ecore#//Sla/Transitions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference slamc.ecore#//Sla/ServiceCover"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference slamc.ecore#//Sla/States"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference slamc.ecore#//Sla/Transitions"/>
     </genClasses>
     <genClasses ecoreClass="slamc.ecore#//ServiceCovered">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute slamc.ecore#//ServiceCovered/name"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference slamc.ecore#//ServiceCovered/Services"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference slamc.ecore#//ServiceCovered/services"/>
     </genClasses>
     <genClasses ecoreClass="slamc.ecore#//Service">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute slamc.ecore#//Service/Partie"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference slamc.ecore#//Service/Slos"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference slamc.ecore#//Service/Slos"/>
     </genClasses>
     <genClasses ecoreClass="slamc.ecore#//Slo">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute slamc.ecore#//Slo/characteristic"/>
@@ -78,6 +78,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute slamc.ecore#//ReconfigurationAction/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute slamc.ecore#//ReconfigurationAction/ActionAttribute"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="slamc.ecore#//CloudResource"/>
+    <genClasses ecoreClass="slamc.ecore#//CloudResource">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute slamc.ecore#//CloudResource/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute slamc.ecore#//CloudResource/provider"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute slamc.ecore#//CloudResource/size"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>
