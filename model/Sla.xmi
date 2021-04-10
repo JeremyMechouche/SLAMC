@@ -4,8 +4,30 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:org.eclipse.slamc="http://org/eclipse/slamc"
-    xsi:schemaLocation="http://org/eclipse/slamc slamc.ecore">
-  <ServiceCover/>
+    xsi:schemaLocation="http://org/eclipse/slamc slamc.ecore"
+    name="Sub-SLA_UI">
+  <ServiceCover
+      name="VM1">
+    <services
+        Partie="CSP1">
+      <Slos
+          characteristic="ResponseTime"
+          value="18"
+          unit="ms"
+          operator="lessOrEqual"/>
+    </services>
+  </ServiceCover>
+  <ServiceCover
+      name="VM2">
+    <services
+        Partie="CSP2">
+      <Slos
+          characteristic="ResponseTime"
+          value="17"
+          unit="ms"
+          operator="lessOrEqual"/>
+    </services>
+  </ServiceCover>
   <States label="S1">
     <Resources
         name="VM1"
