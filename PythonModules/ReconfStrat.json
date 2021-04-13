@@ -1,0 +1,274 @@
+{
+"ReconfigurationStrategy": {
+    "global-SLA": {
+        "states": [
+            {
+                "label":"S1",
+                "type":"isInitial",
+                "Resources":[
+                    {
+                        "component":"Authentication",
+                        "id":"IDaaS",
+                        "provider":"CSP2",
+                        "size":"L"
+                    },
+                    {
+                        "component":"UserInterface",
+                        "id":"VM1",
+                        "provider":"CSP1",
+                        "size":"M"
+                    },
+                    {
+                        "component":"UserInterface",
+                        "id":"VM2",
+                        "provider":"CSP2",
+                        "size":"M"
+                    },
+                    {
+                        "component":"Storage",
+                        "id":"DB1",
+                        "provider":"CSP2",
+                        "size":"L"
+                    },
+                    {
+                        "component":"Storage",
+                        "id":"DB2",
+                        "provider":"CSP3",
+                        "size":"L"
+                    }
+                ]
+            },
+            {
+                "label":"S2",
+                "type":"isNormal",
+                "Ressources":[
+                    {
+                        "component":"Authentication",
+                        "id":"IDaaS",
+                        "provider":"CSP2",
+                        "size":"XL"
+                    },
+                    {
+                        "component":"UserInterface",
+                        "id":"VM1",
+                        "provider":"CSP1",
+                        "size":"M"
+                    },
+                    {
+                        "component":"UserInterface",
+                        "id":"VM2",
+                        "provider":"CSP2",
+                        "size":"M"
+                    },
+                    {
+                        "component":"UserInterface",
+                        "id":"VM3",
+                        "provider":"CSP1",
+                        "size":"M"
+                    },
+                    {
+                        "component":"Storage",
+                        "id":"DB1",
+                        "provider":"CSP2",
+                        "size":"XL"
+                    },
+                    {
+                        "component":"Storage",
+                        "id":"DB2",
+                        "provider":"CSP3",
+                        "size":"XL"
+                    }
+                ]
+            }
+        ],
+        "transitions": [
+            {
+                "id":"T1",
+                "SourceState":"S1",
+                "SourceTarget":"S2",
+                "Events":[
+                    {
+                        "id": "E1",
+                        "predicate": "TP-Event",
+                        "expression": "Everyday at 7:00:00am"
+                    }
+                ],
+                "ReconfigurationActions":[
+                    {
+                        "id": "A1",
+                        "type": "scale-out",
+                        "AA": "UserInterface, change-in-capacity, 1"
+                    },
+                    {
+                        "id": "A2",
+                        "type": "scale-up",
+                        "AA": "Authentication, change-in-capacity, size: XL"
+                    },
+                    {
+                        "id": "A3",
+                        "type": "scale-up",
+                        "AA": "Storage, change-in-capacity, size: XL"
+                    }
+                ]
+            },
+            {
+                "id":"T2",
+                "SourceState":"S2",
+                "SourceTarget":"S1",
+                "Events":[
+                    {
+                        "id": "E1",
+                        "predicate": "TP-Event",
+                        "expression": "Everyday at 10:00:00am"
+                    }
+                ],
+                "ReconfigurationActions":[
+                    {
+                        "id": "A1",
+                        "type": "scale-in",
+                        "AA": "UserInterface, change-in-capacity, 1"
+                    },
+                    {
+                        "id": "A2",
+                        "type": "scale-down",
+                        "AA": "Authentication, change-in-capacity, size: L"
+                    },
+                    {
+                        "id": "A3",
+                        "type": "scale-down",
+                        "AA": "Storage, change-in-capacity, size: L"
+                    }
+                ]
+            }
+        ]
+    },
+    "sub-SLAs": {
+        "UI": {
+            "states": {
+                "label":"S1",
+                "type":"isInitial",
+                "Resources":[
+                    {
+                        "id":"VM1",
+                        "provider":"CSP1",
+                        "size":"M"
+                    },
+                    {
+                        "id":"VM2",
+                        "provider":"CSP2",
+                        "size":"M"
+                    }
+                ]
+            },
+            "transitions": {
+                "id":"T1",
+                "SourceState":"S1",
+                "TargetState":"S2",
+                "Events":[
+                    {
+                        "id": "E1",
+                        "predicate": "TP-Event",
+                        "expression": "Everyday at 7:00:00am"
+                    },
+                    {
+                        "id": "E2",
+                        "predicate": "Q-Event",
+                        "expression": {
+                            "metric": "ResponseTime", 
+                            "functionComputation": "average", 
+                            "operator": "<=", 
+                            "refValue": "10",
+                            "unit": "ms",
+                            "window": "300s"
+                        }
+                    }
+                ]
+            }
+        },
+        "Storage": {
+            "states": {
+                "label":"S1",
+                "type":"isInitial",
+                "Resources":[
+                    {
+                        "id":"VM1",
+                        "provider":"CSP1",
+                        "size":"M"
+                    },
+                    {
+                        "id":"VM2",
+                        "provider":"CSP2",
+                        "size":"M"
+                    }
+                ]
+            },
+            "transitions": {
+                "id":"T1",
+                "SourceState":"S1",
+                "TargetState":"S2",
+                "Events":[
+                    {
+                        "id": "E3",
+                        "predicate": "TP-Event",
+                        "expression": "Everyday at 7:00:00am"
+                    },
+                    {
+                        "id": "E4",
+                        "predicate": "Q-Event",
+                        "expression": {
+                            "metric": "ResponseTime", 
+                            "functionComputation": "average", 
+                            "operator": "<=", 
+                            "refValue": "80",
+                            "unit": "%",
+                            "window": "300s"
+                        }
+                    }
+                ]
+            }
+        },
+        "Authentication": {
+            "states": {
+                "label":"S1",
+                "type":"isInitial",
+                "Resources":[
+                    {
+                        "id":"VM1",
+                        "provider":"CSP1",
+                        "size":"M"
+                    },
+                    {
+                        "id":"VM2",
+                        "provider":"CSP2",
+                        "size":"M"
+                    }
+                ]
+            },
+            "transitions": {
+                "id":"T1",
+                "SourceState":"S1",
+                "TargetState":"S2",
+                "Events":[
+                    {
+                        "id": "E4",
+                        "predicate": "TP-Event",
+                        "expression": "Everyday at 7:00:00am"
+                    },
+                    {
+                        "id": "E5",
+                        "predicate": "Q-Event",
+                        "expression": {
+                            "metric": "Availability", 
+                            "functionComputation": "average", 
+                            "operator": ">=", 
+                            "refValue": "99.999",
+                            "unit": "%",
+                            "window": "300s"
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}
+}

@@ -1,0 +1,91 @@
+{
+"mcsla": {
+        "global-SLA": {
+            "description": "Electronic Document Management Cloud Application Service Level Agreement",
+            "objectives": [
+                {
+                    "termName": "Availability",
+                    "type": "slo",
+                    "value": "99.99",
+                    "unit": "percentage",
+                    "conditionStatement": ">="
+                },
+                {
+                    "termName": "ResponseTime",
+                    "type": "slo",
+                    "value": "20.0",
+                    "unit": "millisecond",
+                    "conditionStatement": "<="
+                }
+            ]
+        },
+        "sub-SLAs": {
+            "UI": {
+                "description": "Virtual Machines",
+                "coveredServices": [
+                    "Virtual Server"
+                ],
+                "objectives": [
+                    {
+                        "termName": "Availability",
+                        "type": "slo",
+                        "value": "99.8",
+                        "unit": "percentage",
+                        "conditionStatement": ">="
+                    },
+                    {
+                        "termName": "ResponseTime",
+                        "type": "slo",
+                        "value": "20",
+                        "unit": "millisecond",
+                        "conditionStatement": "<="
+                    }
+                ]
+            },
+            "Auth": {
+                "description": "Identification as a Service",
+                "coveredServices": [
+                    "Identification as a Service"
+                ],
+                "objectives": [
+                    {
+                        "termName": "Availability",
+                        "type": "slo",
+                        "value": "99.8",
+                        "unit": "percentage",
+                        "conditionStatement": ">="
+                    },
+                    {
+                        "termName": "ResponseTime",
+                        "type": "slo",
+                        "value": "20",
+                        "unit": "millisecond",
+                        "conditionStatement": "<="
+                    }
+                ]
+            },
+            "Stor": {
+                "description": "Databases",
+                "coveredServices": [
+                    "Database"
+                ],
+                "objectives": [
+                    {
+                        "termName": "Availability",
+                        "type": "slo",
+                        "value": "99.8",
+                        "unit": "percentage",
+                        "conditionStatement": ">="
+                    },
+                    {
+                        "termName": "ResponseTime",
+                        "type": "slo",
+                        "value": "20",
+                        "unit": "millisecond",
+                        "conditionStatement": "<="
+                    }
+                ]
+            }
+        }
+}
+}
